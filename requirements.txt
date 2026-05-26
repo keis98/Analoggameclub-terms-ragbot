@@ -5,4 +5,7 @@ langchain-community
 chromadb
 docx2txt
 python-dotenv
-langchain-community
+fastapi
+uvicorn
+python-multipart
+pydantic
