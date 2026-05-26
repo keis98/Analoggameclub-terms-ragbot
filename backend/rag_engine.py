@@ -1,7 +1,6 @@
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import Chroma
-# ↓ 【修正箇所】「langchain.chains」から「langchain_classic.chains」に変更！
 from langchain_classic.chains import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -17,8 +16,8 @@ class RAGEngine:
         
         self.vectorstore = Chroma(persist_directory=persist_directory, embedding_function=self.embeddings)
         
-        # 質問に関連する部分を上位3件取得する設定
-        self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 3})
+        # 質問に関連する部分を上位2件取得する設定
+        self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 2})
         
         # 回答を生成するAI（無料で高速なGemini 1.5 Flashを使用）
         self.llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
