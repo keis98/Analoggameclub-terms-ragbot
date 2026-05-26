@@ -1,0 +1,66 @@
+:root {
+    --navy-deepest: #0a1428; --navy-deep: #0f1d3a; --navy: #15264a;
+    --navy-light: #1d3157; --bronze: #b08846; --bronze-light: #d4a85a;
+    --bronze-bright: #e8c378; --bronze-dark: #7d5e2e; --gold: #f0d188;
+    --cream: #ede4cc; --cream-dim: rgba(237, 228, 204, 0.7); --cream-faint: rgba(237, 228, 204, 0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Cormorant Garamond', serif; background: var(--navy-deepest); color: var(--cream); display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+
+body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 0%, var(--navy-deepest) 80%); pointer-events: none; z-index: 1; }
+
+.chat-container { position: relative; z-index: 10; width: 95%; max-width: 900px; height: 90vh; background: rgba(10, 20, 40, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(176, 136, 70, 0.3); border-radius: 4px; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); }
+
+.chat-header { padding: 1.2rem 2rem; border-bottom: 1px solid rgba(176, 136, 70, 0.2); display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { display: flex; align-items: center; gap: 1rem; }
+.nav-brand-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-dark) 100%); color: var(--navy-deepest); display: flex; align-items: center; justify-content: center; font-weight: 900; font-family: 'Cinzel', serif; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+.header-text h1 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--cream); }
+.header-text p { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--bronze); text-transform: uppercase; }
+
+.nav-menu { display: flex; gap: 1rem; }
+.nav-menu button, .nav-menu a { background: rgba(176, 136, 70, 0.1); border: 1px solid var(--bronze); color: var(--cream); padding: 0.4rem 0.8rem; font-family: 'Cinzel', serif; font-size: 0.7rem; cursor: pointer; text-decoration: none; }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 6px; }
+.nav-hamburger span { width: 25px; height: 2px; background: var(--bronze); }
+
+.chat-history { flex: 1; padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+.chat-row { display: flex; width: 100%; align-items: flex-start; gap: 15px; }
+.assistant-row { justify-content: flex-start; }
+.user-row { justify-content: flex-end; }
+.avatar { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 18px; border-radius: 4px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+.assistant-avatar { background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-dark) 100%); }
+.message { max-width: 75%; padding: 0.9rem 1.4rem; font-size: 1.05rem; line-height: 1.7; border: 1px solid rgba(176, 136, 70, 0.2); font-family: sans-serif; }
+.assistant-message { background: rgba(29, 49, 87, 0.7); border-left: 3px solid var(--bronze-dark); }
+.user-message { background: rgba(176, 136, 70, 0.15); border-right: 3px solid var(--bronze-bright); }
+
+.chat-input-area { padding: 1.5rem 2rem; background: rgba(10, 20, 40, 0.96); display: flex; gap: 15px; }
+.chat-input-area input { flex: 1; padding: 1rem; background: rgba(29, 49, 87, 0.6); border: 1px solid var(--bronze); color: #fff; }
+.btn-primary { background: var(--bronze); color: var(--navy-deepest); font-family: 'Cinzel'; padding: 0 1.5rem; border: none; cursor: pointer; }
+
+@media (max-width: 600px) {
+    .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; right: 20px; background: var(--navy); padding: 1rem; }
+    .nav-menu.open { display: flex; }
+    .nav-hamburger { display: flex; }
+}
+
+/* 吹き出しの視認性最適化 */
+.message {
+    max-width: 80%;
+    width: fit-content;
+    padding: 1.2rem 1.8rem; /* 余白を広げて圧迫感を軽減 */
+    font-size: 1.05rem;
+    line-height: 1.9;      /* 行間をさらに広げて読みやすく */
+    border: 1px solid rgba(176, 136, 70, 0.2);
+    position: relative;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    letter-spacing: 0.04em; /* 文字間隔をわずかに広げる */
+    text-align: left;
+}
+
+/* リスト（箇条書き）の余白を調整 */
+.assistant-message ul, .assistant-message ol {
+    margin-left: 1.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.assistant-message li { margin-bottom: 0.6rem; } /* リスト間の余白を確保 */

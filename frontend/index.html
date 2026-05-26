@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAIST Analog Game Club - 規約AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="nav-brand">
+                <div class="nav-brand-mark">A</div>
+                <div class="header-text">
+                    <h1>JAIST Analog Game Club</h1>
+                    <p>Official Rulebook AI</p>
+                </div>
+            </div>
+
+            <button class="nav-hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <button onclick="window.location.reload()">チャットをリセット</button>
+                <a href="#" target="_blank">規約原文を表示</a>
+            </nav>
+        </header>
+
+        <main id="chat-history" class="chat-history">
+            <div class="chat-row assistant-row">
+                <div class="avatar assistant-avatar">🤖</div>
+                <div class="message assistant-message">ようこそ。当サークルの規約についてお答えいたします。何を知りたいですか？</div>
+            </div>
+        </main>
+
+        <footer class="chat-input-area">
+            <input type="text" id="user-input" placeholder="質問を入力..." autocomplete="off" />
+            <button id="send-button" class="btn-primary"><span>送信</span></button>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
