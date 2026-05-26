@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from backend.rag_engine import RAGEngine
+from fastapi.concurrency import run_in_threadpool
 
 # アプリケーションの初期化
 app = FastAPI(title="Analog Game Club RAG API")
@@ -40,8 +41,13 @@ class ChatRequest(BaseModel):
     question: str
 
 # APIのエンドポイント
+# @app.post("/api/chat")
+# async def chat(request: ChatRequest):
+#     # 質問を受け取り、RAGEngineで回答を生成して返す
+#     answer = engine.get_answer(request.question)
+#     return {"answer": answer}
 @app.post("/api/chat")
 async def chat(request: ChatRequest):
-    # 質問を受け取り、RAGEngineで回答を生成して返す
-    answer = engine.get_answer(request.question)
+    # 重い処理を別スレッドで実行してタイムアウトを防ぐ
+    answer = await run_in_threadpool(engine.get_answer, request.question)
     return {"answer": answer}
